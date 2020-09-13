@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace ConorSmith\Recollect\UseCases;
 
-use ConorSmith\Recollect\Application\ViewModel\Player;
+use ConorSmith\Recollect\Application\QueryResult\Player;
 use ConorSmith\Recollect\Domain\GameRepository;
 use ConorSmith\Recollect\Domain\PlayerId;
 

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace ConorSmith\Recollect\Application\ViewModel;
+namespace ConorSmith\Recollect\Application\QueryResult;
 
 use ConorSmith\Recollect\Domain\EndOfGameStatus;
 use ConorSmith\Recollect\Domain\PlayPile;

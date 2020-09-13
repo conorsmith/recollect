@@ -71,6 +71,16 @@ if ($_SERVER['REQUEST_METHOD'] === "GET" && $_SERVER['REQUEST_URI'] === "/") {
         )
     );
 
+} elseif ($_SERVER['REQUEST_METHOD'] === "GET"
+    && substr($_SERVER['REQUEST_URI'], 0, 8) === "/player/"
+    && substr($_SERVER['REQUEST_URI'], 44, 51) === "/status"
+) {
+    $controller = new \ConorSmith\Recollect\Infrastructure\Controllers\GetPlayerStatus(
+        new \ConorSmith\Recollect\UseCases\ShowPlayer(
+            $gameRepo
+        )
+    );
+
 } elseif ($_SERVER['REQUEST_METHOD'] === "GET" && substr($_SERVER['REQUEST_URI'], 0, 8) === "/player/") {
     $controller = new \ConorSmith\Recollect\Infrastructure\Controllers\GetPlayerPage(
         new \ConorSmith\Recollect\UseCases\ShowPlayer(
