@@ -10,10 +10,10 @@ require_once __DIR__ . "/../vendor/autoload.php";
  */
 
 $db = \Doctrine\DBAL\DriverManager::getConnection([
-    'dbname'   => "recollect",
-    'user'     => "recollect",
-    'password' => "password",
-    'host'     => "localhost",
+    'dbname'   => getenv('DB_NAME') ?: "recollect",
+    'user'     => getenv('DB_USER') ?: "recollect",
+    'password' => getenv('DB_PASSWORD') ?: "password",
+    'host'     => getenv('DB_HOST') ?: "localhost",
     'driver'   => "pdo_mysql",
 ]);
 
