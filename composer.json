@@ -9,6 +9,7 @@
     "doctrine/dbal": "^2.10",
     "ramsey/uuid": "^4.1",
     "symfony/http-foundation": "^5.1",
-    "paragonie/random-lib": "^2.0"
+    "paragonie/random-lib": "^2.0",
+    "vlucas/phpdotenv": "^5.1"
   }
 }
