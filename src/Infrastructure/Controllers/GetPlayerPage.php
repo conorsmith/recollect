@@ -58,7 +58,7 @@ final class GetPlayerPage
         }
 
         if ($endOfGameStatus->drew()) {
-            return "You Drew";
+            return "It's a draw!";
         }
 
         // TODO: throw exception
