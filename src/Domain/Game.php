@@ -52,11 +52,6 @@ final class Game
         return $this->drawPile;
     }
 
-    public function getLastAddedPlayerId(): PlayerId
-    {
-        return $this->players[count($this->players) - 1]->getId();
-    }
-
     public function getPlayer(PlayerId $playerId): Player
     {
         /** @var Player $player */
@@ -67,13 +62,6 @@ final class Game
         }
 
         // TODO: Throw exception
-    }
-
-    public function getDrawingPlayerId(): PlayerId
-    {
-        $playerIndex = $this->turnIndex % count($this->players);
-
-        return $this->players[$playerIndex]->getId();
     }
 
     public function getActiveFaceOff(): FaceOff
