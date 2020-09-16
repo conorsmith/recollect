@@ -13,6 +13,20 @@
     <title>Recollect</title>
 
     <style>
+        .face-up-card {
+            margin: 1rem auto;
+            max-width: 20rem;
+            min-height: 30rem;
+        }
+
+        .category-text {
+            line-height: 1.2;
+            font-family: 'Hind', sans-serif;
+            font-size: 3rem;
+            font-weight: 500;
+            text-align: center;
+        }
+
         .symbol-circle {
             margin: 2.5rem auto;
             width: 6rem;
@@ -53,18 +67,20 @@
 
 <div class="container">
 
-    <div class="card"
+    <div class="card face-up-card"
          id="faceUpCard"
-         style="<?=is_null($faceUpCard) ? "display: none;" : ""?> margin: 1rem auto; width: 20rem; text-align: center;"
+         style="<?=is_null($faceUpCard) ? "display: none;" : ""?>"
     >
-        <div class="card-body" style="padding-top: 3.5rem; padding-bottom: 3.5rem; font-family: 'Hind', sans-serif; font-size: 3rem; font-weight: 500;">
-            <div class="faceUpCard-category"><?=$faceUpCard->category?></div>
+        <div class="card-body d-flex justify-content-center align-items-center">
+            <div>
+            <div class="faceUpCard-category category-text"><?=$faceUpCard->category?></div>
             <div class="faceUpCard-symbol">
                 <?php if (!is_null($faceUpCard)) : ?>
                     <?php require $faceUpCard->symbolTemplate; ?>
                 <?php endif ?>
             </div>
-            <div class="faceUpCard-category" style="transform: rotateX(180deg) scale(-1, 1);"><?=$faceUpCard->category?></div>
+            <div class="faceUpCard-category category-text" style="transform: rotateX(180deg) scale(-1, 1);"><?=$faceUpCard->category?></div>
+            </div>
         </div>
     </div>
 
