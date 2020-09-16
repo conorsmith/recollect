@@ -8,10 +8,10 @@ use ConorSmith\Recollect\Domain\PlayPile;
 
 final class FaceUpCard
 {
-    private const SYMBOL_COLOURS_BY_ID = [
-        "2ad73bfd-9cf5-45c7-89dc-862f3e6fc4af" => "FF0000",
-        "1b96336d-59fa-414d-b29b-b49823b90e14" => "00FF00",
-        "b379317c-d4df-4392-ae87-7eb54568387b" => "0000FF",
+    private const SYMBOL_TEMPLATES_BY_ID = [
+        "2ad73bfd-9cf5-45c7-89dc-862f3e6fc4af" => "Diamond",
+        "1b96336d-59fa-414d-b29b-b49823b90e14" => "Square",
+        "b379317c-d4df-4392-ae87-7eb54568387b" => "Circle",
     ];
 
     public static function fromPlayPile(PlayPile $playPile): ?self
@@ -29,7 +29,10 @@ final class FaceUpCard
     public $category;
 
     /** @var string */
-    public $symbolColour;
+    public $symbolId;
+
+    /** @var string */
+    public $symbolTemplate;
 
     public function __construct(Card $card)
     {
@@ -44,7 +47,8 @@ final class FaceUpCard
         }
 
         $this->category = $cardConfig[$card->getId()->__toString()]['category'];
-        $this->symbolColour = self::SYMBOL_COLOURS_BY_ID[$card->getSymbol()->getId()->__toString()];
+        $this->symbolId = $card->getSymbol()->getId()->__toString();
+        $this->symbolTemplate = __DIR__ . "/../../Infrastructure/Templates/Symbols/" . self::SYMBOL_TEMPLATES_BY_ID[$card->getSymbol()->getId()->__toString()] . ".php";
     }
 
     private function getCardsConfig(): array

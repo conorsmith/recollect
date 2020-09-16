@@ -11,6 +11,43 @@
     <link href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <title>Recollect</title>
+
+    <style>
+        .symbol-circle {
+            margin: 2.5rem auto;
+            width: 6rem;
+            height: 6rem;
+            border-radius: 50%;
+            background-color: #0000FF;
+        }
+
+        .symbol-diamond {
+            margin: 2.5rem auto;
+            width: 0;
+            height: 0;
+            border: 3rem solid transparent;
+            border-bottom-color: #FF0000;
+            position: relative;
+            top: -3rem;
+        }
+        .symbol-diamond:after {
+            content: '';
+            position: absolute;
+            left: -3rem;
+            top: 3rem;
+            width: 0;
+            height: 0;
+            border: 3rem solid transparent;
+            border-top-color: #FF0000;
+        }
+
+        .symbol-square {
+            margin: 2.5rem auto;
+            width: 6rem;
+            height: 6rem;
+            background-color: #00FF00;
+        }
+    </style>
 </head>
 <body>
 
@@ -22,7 +59,9 @@
     >
         <div class="card-body" style="padding-top: 3.5rem; padding-bottom: 3.5rem; font-family: 'Hind', sans-serif; font-size: 3rem; font-weight: 500;">
             <div class="faceUpCard-category"><?=$faceUpCard->category?></div>
-            <div class="faceUpCard-symbol" style="margin: 2.5rem auto; width: 6rem; height: 6rem; background-color: #<?=$faceUpCard->symbolColour?>;"></div>
+            <div class="faceUpCard-symbol">
+                <?php require $faceUpCard->symbolTemplate; ?>
+            </div>
             <div class="faceUpCard-category" style="transform: rotateX(180deg) scale(-1, 1);"><?=$faceUpCard->category?></div>
         </div>
     </div>
@@ -88,7 +127,9 @@
                         $("#faceUpCard").hide();
                     } else {
                         $("#faceUpCard .faceUpCard-category").text(response.faceUpCard.category);
-                        $("#faceUpCard .faceUpCard-symbol").css("backgroundColor", "#" + response.faceUpCard.symbolColour);
+                        $("#faceUpCard .faceUpCard-symbol").html(
+                            $("#symbol-" + response.faceUpCard.symbolId).html()
+                        );
                         $("#faceUpCard").show();
                         $("#emptyPlayPile").hide();
                     }
@@ -119,6 +160,10 @@
         })();
     }
 </script>
+
+<template id="symbol-b379317c-d4df-4392-ae87-7eb54568387b"><?php require __DIR__ . "/Symbols/Circle.php"; ?></template>
+<template id="symbol-2ad73bfd-9cf5-45c7-89dc-862f3e6fc4af"><?php require __DIR__ . "/Symbols/Diamond.php"; ?></template>
+<template id="symbol-1b96336d-59fa-414d-b29b-b49823b90e14"><?php require __DIR__ . "/Symbols/Square.php"; ?></template>
 
 </body>
 </html>
