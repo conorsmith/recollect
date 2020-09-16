@@ -10,7 +10,7 @@ final class FaceUpCard
 {
     private const SYMBOL_TEMPLATES_BY_ID = [
         "2ad73bfd-9cf5-45c7-89dc-862f3e6fc4af" => "Diamond",
-        "1b96336d-59fa-414d-b29b-b49823b90e14" => "Square",
+        "1b96336d-59fa-414d-b29b-b49823b90e14" => "Cross",
         "b379317c-d4df-4392-ae87-7eb54568387b" => "Circle",
     ];
 

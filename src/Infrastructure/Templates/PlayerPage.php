@@ -13,9 +13,30 @@
     <title>Recollect</title>
 
     <style>
+        .surface {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-radial-gradient(
+                    circle at center,
+                    #fcfcfc,
+                    #fcfcfc 20px,
+                    #f8f8f8 20px,
+                    #f8f8f8 40px
+            );
+        }
+
+        .no-cards {
+            font-family: 'Hind', sans-serif;
+            font-size: 2rem;
+            font-weight: 100;
+        }
+
         .face-up-card {
             margin: 1rem auto;
-            max-width: 20rem;
+            width: 20rem;
             min-height: 30rem;
         }
 
@@ -32,7 +53,24 @@
             width: 6rem;
             height: 6rem;
             border-radius: 50%;
-            background-color: #0000FF;
+            border: 1rem solid #dd6c09;
+        }
+
+        .symbol-cross {
+            margin: 2.5rem auto;
+            background: #2cdd04;
+            height: 6rem;
+            position: relative;
+            width: 2rem;
+        }
+        .symbol-cross:after {
+            background: #2cdd04;
+            content: "";
+            height: 2rem;
+            left: -2rem;
+            position: absolute;
+            top: 2rem;
+            width: 6rem;
         }
 
         .symbol-diamond {
@@ -40,7 +78,7 @@
             width: 0;
             height: 0;
             border: 3rem solid transparent;
-            border-bottom-color: #FF0000;
+            border-bottom-color: #ffe600;
             position: relative;
             top: -3rem;
         }
@@ -52,20 +90,13 @@
             width: 0;
             height: 0;
             border: 3rem solid transparent;
-            border-top-color: #FF0000;
-        }
-
-        .symbol-square {
-            margin: 2.5rem auto;
-            width: 6rem;
-            height: 6rem;
-            background-color: #00FF00;
+            border-top-color: #ffe600;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
+<div class="surface d-flex justify-content-center align-items-center">
 
     <div class="card face-up-card"
          id="faceUpCard"
@@ -85,9 +116,10 @@
     </div>
 
     <div id="emptyPlayPile"
-         style="<?=is_null($faceUpCard) ? "" : "display: none;" ?> margin: 1rem auto; width: 20rem; text-align: center;"
+         class="no-cards"
+         style="<?=is_null($faceUpCard) ? "" : "display: none;" ?>"
     >
-        No cards
+        You have no cards
     </div>
 
 </div>
@@ -181,7 +213,7 @@
 
 <template id="symbol-b379317c-d4df-4392-ae87-7eb54568387b"><?php require __DIR__ . "/Symbols/Circle.php"; ?></template>
 <template id="symbol-2ad73bfd-9cf5-45c7-89dc-862f3e6fc4af"><?php require __DIR__ . "/Symbols/Diamond.php"; ?></template>
-<template id="symbol-1b96336d-59fa-414d-b29b-b49823b90e14"><?php require __DIR__ . "/Symbols/Square.php"; ?></template>
+<template id="symbol-1b96336d-59fa-414d-b29b-b49823b90e14"><?php require __DIR__ . "/Symbols/Cross.php"; ?></template>
 
 </body>
 </html>
