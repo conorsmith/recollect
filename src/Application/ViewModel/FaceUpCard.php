@@ -42,7 +42,7 @@ final class FaceUpCard
             // TODO: throw exception
         }
 
-        if (!array_key_exists($card->getSymbol()->getId()->__toString(), self::SYMBOL_COLOURS_BY_ID)) {
+        if (!array_key_exists($card->getSymbol()->getId()->__toString(), self::SYMBOL_TEMPLATES_BY_ID)) {
             // TODO: throw exception
         }
 
