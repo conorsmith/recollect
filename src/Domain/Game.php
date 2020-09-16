@@ -135,8 +135,8 @@ final class Game
 
     public function isGameOver(): bool
     {
-        // TODO: There can still be face offs when the draw pile is empty
-        return $this->drawPile->isEmpty();
+        return $this->drawPile->isEmpty()
+            && !$this->hasActiveFaceOff();
     }
 
     public function canPlayerDrawCard(PlayerId $playerId): bool
