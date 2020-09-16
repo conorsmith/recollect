@@ -72,17 +72,17 @@
         No cards
     </div>
 
-    <div class="card" style="margin-bottom: 1rem; text-align: center;">
-        <div class="card-body d-flex justify-content-center">
-            <form method="POST" action="/player/<?=$playerId?>/draw-card" style="margin: 0 0.2rem;">
-                <button type="submit" id="drawButton" class="btn btn-primary" <?=$canDrawCard ? "" : "disabled"?>>Draw Card</button>
-            </form>
-            <form method="POST" action="/player/<?=$playerId?>/win-face-off" style="margin: 0 0.2rem;">
-                <button type="submit" id="faceOffButton" class="btn btn-primary" <?=$canCompeteInFaceOff ? "" : "disabled"?>>Win Face Off</button>
-            </form>
-        </div>
-    </div>
+</div>
 
+<div class="fixed-bottom" style="padding: 0.5rem; border-top: 1px solid #ddd; background-color: #fff;">
+    <div class="d-flex justify-content-center">
+        <form method="POST" action="/player/<?=$playerId?>/draw-card" style="margin: 0 0.2rem;">
+            <button type="submit" id="drawButton" class="btn btn-primary" <?=$canDrawCard ? "" : "disabled"?>>Draw Card</button>
+        </form>
+        <form method="POST" action="/player/<?=$playerId?>/win-face-off" style="margin: 0 0.2rem;">
+            <button type="submit" id="faceOffButton" class="btn btn-primary" <?=$canCompeteInFaceOff ? "" : "disabled"?>>Win Face Off</button>
+        </form>
+    </div>
 </div>
 
 <div class="modal" tabindex="-1" id="gameOverMessage">
