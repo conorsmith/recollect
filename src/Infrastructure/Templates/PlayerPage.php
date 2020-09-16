@@ -60,7 +60,9 @@
         <div class="card-body" style="padding-top: 3.5rem; padding-bottom: 3.5rem; font-family: 'Hind', sans-serif; font-size: 3rem; font-weight: 500;">
             <div class="faceUpCard-category"><?=$faceUpCard->category?></div>
             <div class="faceUpCard-symbol">
-                <?php require $faceUpCard->symbolTemplate; ?>
+                <?php if (!is_null($faceUpCard)) : ?>
+                    <?php require $faceUpCard->symbolTemplate; ?>
+                <?php endif ?>
             </div>
             <div class="faceUpCard-category" style="transform: rotateX(180deg) scale(-1, 1);"><?=$faceUpCard->category?></div>
         </div>
