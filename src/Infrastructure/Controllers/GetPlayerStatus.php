@@ -11,10 +11,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 final class GetPlayerStatus
 {
-    public const METHOD = Request::METHOD_GET;
-
-    public const ROUTE = "/player/{playerId}/status";
-
     /** @var ShowPlayer */
     private $useCase;
 
@@ -23,7 +19,7 @@ final class GetPlayerStatus
         $this->useCase = $useCase;
     }
 
-    public function __invoke(Request $request)
+    public function __invoke(Request $request, array $routeParameters)
     {
         $routeSegments = explode("/", $request->getPathInfo());
 

@@ -10,10 +10,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 final class PostStartGame
 {
-    public const METHOD = Request::METHOD_POST;
-
-    public const ROUTE = "/player/{playerId}/start-game/";
-
     /** @var StartGame */
     private $useCase;
 
@@ -22,7 +18,7 @@ final class PostStartGame
         $this->useCase = $useCase;
     }
 
-    public function __invoke(Request $request)
+    public function __invoke(Request $request, array $routeParameters)
     {
         $routeSegments = explode("/", $request->getPathInfo());
 

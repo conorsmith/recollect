@@ -12,10 +12,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 final class GetPlayerPage
 {
-    public const METHOD = Request::METHOD_GET;
-
-    public const ROUTE = "/player/*";
-
     /** @var ShowPlayer */
     private $useCase;
 
@@ -24,7 +20,7 @@ final class GetPlayerPage
         $this->useCase = $useCase;
     }
 
-    public function __invoke(Request $request)
+    public function __invoke(Request $request, array $routeParameters)
     {
         $routeSegments = explode("/", $request->getPathInfo());
 

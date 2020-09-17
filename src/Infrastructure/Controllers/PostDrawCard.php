@@ -10,10 +10,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 final class PostDrawCard
 {
-    public const METHOD = Request::METHOD_POST;
-
-    public const ROUTE = "/player/{playerId}/draw-card";
-
     /** @var DrawCard */
     private $useCase;
 
@@ -22,7 +18,7 @@ final class PostDrawCard
         $this->useCase = $useCase;
     }
 
-    public function __invoke(Request $request)
+    public function __invoke(Request $request, array $routeParameters)
     {
         $routeSegments = explode("/", $request->getPathInfo());
 

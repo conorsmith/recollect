@@ -8,10 +8,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 final class PostJoinTable
 {
-    public const METHOD = Request::METHOD_POST;
-
-    public const ROUTE = "/join-table";
-
     /** @var JoinTable */
     private $useCase;
 
@@ -20,7 +16,7 @@ final class PostJoinTable
         $this->useCase = $useCase;
     }
 
-    public function __invoke(Request $request)
+    public function __invoke(Request $request, array $routeParameters)
     {
         $seatId = $this->useCase->__invoke($_POST['code']);
 

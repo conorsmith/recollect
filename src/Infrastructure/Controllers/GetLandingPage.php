@@ -7,11 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 final class GetLandingPage
 {
-    public const METHOD = Request::METHOD_GET;
-
-    public const ROUTE = "/";
-
-    public function __invoke()
+    public function __invoke(Request $request, array $routeParameters)
     {
         echo $this->renderTemplate();
     }

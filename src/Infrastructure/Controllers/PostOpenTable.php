@@ -8,10 +8,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 final class PostOpenTable
 {
-    public const METHOD = Request::METHOD_POST;
-
-    public const ROUTE = "/open-table";
-
     /** @var OpenTable */
     private $useCase;
 
@@ -20,7 +16,7 @@ final class PostOpenTable
         $this->useCase = $useCase;
     }
 
-    public function __invoke()
+    public function __invoke(Request $request, array $routeParameters)
     {
         $seatId = $this->useCase->__invoke();
 
