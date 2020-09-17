@@ -57,7 +57,8 @@ final class ControllerFactory
                 return new PostJoinTable(
                     new UseCases\JoinTable(
                         $tableRepo
-                    )
+                    ),
+                    new TemplateEngine
                 );
             },
             GetTablePage::class => function () use ($tableRepo) {
