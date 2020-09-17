@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace ConorSmith\Recollect\Infrastructure\Controllers;
 
 use ConorSmith\Recollect\Domain\Setup\SeatId;
+use ConorSmith\Recollect\Infrastructure\TemplateEngine;
 use ConorSmith\Recollect\UseCases\StartGame;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -15,19 +16,28 @@ final class PostStartGame implements Controller
     /** @var StartGame */
     private $useCase;
 
-    public function __construct(StartGame $useCase)
+    /** @var TemplateEngine */
+    private $templateEngine;
+
+    public function __construct(StartGame $useCase, TemplateEngine $templateEngine)
     {
         $this->useCase = $useCase;
+        $this->templateEngine = $templateEngine;
     }
 
     public function __invoke(Request $request, array $routeParameters): Response
     {
-        $routeSegments = explode("/", $request->getPathInfo());
+        $seatId = new SeatId(Uuid::fromString($routeParameters['seatId']));
 
-        $seatId = new SeatId(Uuid::fromString($routeSegments[2]));
+        $result = $this->useCase->__invoke($seatId);
 
-        $playerId = $this->useCase->__invoke($seatId);
+        if (!$result->succeeded()) {
+            return new Response(
+                $this->templateEngine->render(__DIR__ . "/../Templates/ClientErrorPage.php"),
+                Response::HTTP_BAD_REQUEST
+            );
+        }
 
-        return new RedirectResponse("/player/{$playerId}");
+        return new RedirectResponse("/player/{$result->getPlayerId()}");
     }
 }

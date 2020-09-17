@@ -57,7 +57,7 @@
                 <p><?=$numberOfPlayers?> player<?=$numberOfPlayers === 1 ? " has" : "s have"?> joined</p>
 
                 <form method="POST" action="/seat/<?=$seatId?>/start-game">
-                    <button type="submit" class="btn btn-primary btn-block">Start Game</button>
+                    <button type="submit" class="btn btn-primary btn-block" <?=$numberOfPlayers === 1 ? "disabled" : ""?>>Start Game</button>
                 </form>
             </div>
         </div>

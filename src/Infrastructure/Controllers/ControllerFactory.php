@@ -74,7 +74,8 @@ final class ControllerFactory
                     new UseCases\StartGame(
                         $gameRepo,
                         $tableRepo
-                    )
+                    ),
+                    new TemplateEngine
                 );
             },
             GetPlayerStatus::class => function () use ($gameRepo) {

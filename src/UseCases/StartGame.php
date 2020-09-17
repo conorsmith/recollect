@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace ConorSmith\Recollect\UseCases;
 
+use ConorSmith\Recollect\Application\CommandResult\StartedGame;
 use ConorSmith\Recollect\Domain\GameRepository;
-use ConorSmith\Recollect\Domain\PlayerId;
 use ConorSmith\Recollect\Domain\Setup\SeatId;
 use ConorSmith\Recollect\Domain\Setup\TableRepository;
 
@@ -22,16 +22,20 @@ class StartGame
         $this->tableRepo = $tableRepo;
     }
 
-    public function __invoke(SeatId $seatId): PlayerId
+    public function __invoke(SeatId $seatId): StartedGame
     {
         $table = $this->tableRepo->findForSeat($seatId);
 
         if (is_null($table)) {
-            // Table not found
+            return StartedGame::failure();
         }
 
         if (!$table->isOpen()) {
-            // Cannot start a game when the table is closed
+            return StartedGame::failure();
+        }
+
+        if (!$table->canStartGame()) {
+            return StartedGame::failure();
         }
 
         $game = $table->startGame();
@@ -41,10 +45,6 @@ class StartGame
 
         $playerId = $table->getSeat($seatId)->getPlayerId();
 
-        if (is_null($playerId)) {
-            // TODO: Handle player ID not being set
-        }
-
-        return $playerId;
+        return StartedGame::success($playerId);
     }
 }

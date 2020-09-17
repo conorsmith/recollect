@@ -71,6 +71,11 @@ final class Table
         return $this->seats[count($this->seats) - 1];
     }
 
+    public function canStartGame(): bool
+    {
+        return count($this->seats) > 1;
+    }
+
     public function startGame(): Game
     {
         if (count($this->seats) === 0) {
