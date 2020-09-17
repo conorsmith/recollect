@@ -6,6 +6,7 @@ namespace ConorSmith\Recollect\Infrastructure\Controllers;
 use ConorSmith\Recollect\Domain\Setup\SeatId;
 use ConorSmith\Recollect\UseCases\StartGame;
 use Ramsey\Uuid\Uuid;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 final class PostStartGame
@@ -26,6 +27,8 @@ final class PostStartGame
 
         $playerId = $this->useCase->__invoke($seatId);
 
-        header("Location: /player/{$playerId}");
+        $response = new RedirectResponse("/player/{$playerId}");
+
+        $response->send();
     }
 }

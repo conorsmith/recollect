@@ -6,7 +6,9 @@ namespace ConorSmith\Recollect\Infrastructure\Controllers;
 use ConorSmith\Recollect\Domain\Setup\SeatId;
 use ConorSmith\Recollect\UseCases\ShowTable;
 use Ramsey\Uuid\Uuid;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 final class GetTablePage
 {
@@ -27,15 +29,18 @@ final class GetTablePage
         $table = $this->useCase->__invoke($seatId);
 
         if (!$table->isOpen()) {
-            header("Location: /player/{$table->getSeat($seatId)->getPlayerId()}");
+            $response = new RedirectResponse("/player/{$table->getSeat($seatId)->getPlayerId()}");
+            $response->send();
             return;
         }
 
-        echo $this->renderTemplate(__DIR__ . "/../Templates/TablePage.php", [
+        $response = new Response($this->renderTemplate(__DIR__ . "/../Templates/TablePage.php", [
             'seatId'          => $seatId->__toString(),
             'joinCode'        => $table->getCode(),
             'numberOfPlayers' => count($table->getSeats()),
-        ]);
+        ]));
+
+        $response->send();
     }
 
     private function renderTemplate(string $templateFile, array $templateVariables): string

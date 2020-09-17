@@ -6,6 +6,7 @@ namespace ConorSmith\Recollect\Infrastructure\Controllers;
 use ConorSmith\Recollect\Domain\PlayerId;
 use ConorSmith\Recollect\UseCases\WinFaceOff;
 use Ramsey\Uuid\Uuid;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 final class PostWinFaceOff
@@ -26,6 +27,8 @@ final class PostWinFaceOff
 
         $this->useCase->__invoke($playerId);
 
-        header("Location: /player/{$playerId}");
+        $response = new RedirectResponse("/player/{$playerId}");
+
+        $response->send();
     }
 }

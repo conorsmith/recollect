@@ -4,12 +4,15 @@ declare(strict_types=1);
 namespace ConorSmith\Recollect\Infrastructure\Controllers;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 final class GetLandingPage
 {
     public function __invoke(Request $request, array $routeParameters)
     {
-        echo $this->renderTemplate();
+        $response = new Response($this->renderTemplate());
+
+        $response->send();
     }
 
     private function renderTemplate(): string

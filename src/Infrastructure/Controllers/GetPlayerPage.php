@@ -9,6 +9,7 @@ use ConorSmith\Recollect\Domain\PlayerId;
 use ConorSmith\Recollect\UseCases\ShowPlayer;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 final class GetPlayerPage
 {
@@ -28,7 +29,7 @@ final class GetPlayerPage
 
         $player = $this->useCase->__invoke($playerId);
 
-        echo $this->renderTemplate(__DIR__ . "/../Templates/PlayerPage.php", [
+        $response = new Response($this->renderTemplate(__DIR__ . "/../Templates/PlayerPage.php", [
             'playerId'            => $playerId->__toString(),
             'faceUpCard'          => FaceUpCard::fromPlayPile($player->getPlayPile()),
             'canDrawCard'         => $player->canDrawCard(),
@@ -36,7 +37,9 @@ final class GetPlayerPage
             'isGameOver'          => $player->isGameOver(),
             'endOfGameStatus'     => $this->getEndOfGameStatus($player->getEndOfGameStatus()),
             'totalCardsWon'       => $player->getWinningPile()->getTotal(),
-        ]);
+        ]));
+
+        $response->send();
     }
 
     private function getEndOfGameStatus(?EndOfGameStatus $endOfGameStatus): string

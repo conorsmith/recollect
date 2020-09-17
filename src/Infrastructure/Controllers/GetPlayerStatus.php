@@ -8,6 +8,7 @@ use ConorSmith\Recollect\Domain\PlayerId;
 use ConorSmith\Recollect\UseCases\ShowPlayer;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 final class GetPlayerStatus
 {
@@ -27,11 +28,13 @@ final class GetPlayerStatus
 
         $player = $this->useCase->__invoke($playerId);
 
-        echo json_encode([
+        $response = new Response(json_encode([
             'faceUpCard'          => FaceUpCard::fromPlayPile($player->getPlayPile()),
             'canDrawCard'         => $player->canDrawCard(),
             'canCompeteInFaceOff' => $player->canCompeteInFaceOff(),
             'isGameOver'          => $player->isGameOver(),
-        ]);
+        ]));
+
+        $response->send();
     }
 }
