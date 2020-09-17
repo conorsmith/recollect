@@ -6,7 +6,6 @@ namespace ConorSmith\Recollect\Domain\Setup;
 use ConorSmith\Recollect\Domain\DrawPile;
 use ConorSmith\Recollect\Domain\Game;
 use ConorSmith\Recollect\Domain\GameId;
-use ConorSmith\Recollect\Domain\Player;
 
 final class Table
 {
