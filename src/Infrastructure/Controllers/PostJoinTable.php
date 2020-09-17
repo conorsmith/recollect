@@ -34,8 +34,15 @@ final class PostJoinTable implements Controller
             );
         }
 
-        $seatId = $this->useCase->__invoke($request->request->get('code'));
+        $result = $this->useCase->__invoke($request->request->get('code'));
 
-        return new RedirectResponse("/seat/{$seatId}");
+        if (!$result->succeeded()) {
+            return new Response(
+                $this->templateEngine->render(__DIR__ . "/../Templates/ClientErrorPage.php"),
+                Response::HTTP_BAD_REQUEST
+            );
+        }
+
+        return new RedirectResponse("/seat/{$result->getSeatId()}");
     }
 }

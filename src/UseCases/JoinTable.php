@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace ConorSmith\Recollect\UseCases;
 
-use ConorSmith\Recollect\Domain\Setup\SeatId;
+use ConorSmith\Recollect\Application\CommandResult\JoinedTable;
 use ConorSmith\Recollect\Domain\Setup\TableRepository;
 
 class JoinTable
@@ -16,22 +16,22 @@ class JoinTable
         $this->tableRepo = $tableRepo;
     }
 
-    public function __invoke(string $joinCode): SeatId
+    public function __invoke(string $joinCode): JoinedTable
     {
         $table = $this->tableRepo->findByJoinCode($joinCode);
 
         if (is_null($table)) {
-            // Table not found
+            return JoinedTable::failure();
         }
 
         if (!$table->isOpen()) {
-            // TODO: Handle not being able to add a player to a closed table
+            return JoinedTable::failure();
         }
 
         $table->join();
 
         $this->tableRepo->save($table);
 
-        return $table->getLastSeatJoined()->getId();
+        return JoinedTable::success($table->getLastSeatJoined()->getId());
     }
 }
