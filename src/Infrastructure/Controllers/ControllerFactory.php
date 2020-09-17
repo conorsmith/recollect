@@ -7,6 +7,7 @@ use ConorSmith\Recollect\Domain\Deck;
 use ConorSmith\Recollect\Infrastructure\Clock;
 use ConorSmith\Recollect\Infrastructure\Repositories\GameRepositoryDb;
 use ConorSmith\Recollect\Infrastructure\Repositories\TableRepositoryDb;
+use ConorSmith\Recollect\Infrastructure\TemplateEngine;
 use ConorSmith\Recollect\UseCases;
 use Doctrine\DBAL\DriverManager;
 use InvalidArgumentException;
@@ -40,7 +41,9 @@ final class ControllerFactory
 
         $this->factories = [
             GetLandingPage::class => function () {
-                return new GetLandingPage;
+                return new GetLandingPage(
+                    new TemplateEngine
+                );
             },
             PostOpenTable::class => function () use ($tableRepo) {
                 return new PostOpenTable(
@@ -61,7 +64,8 @@ final class ControllerFactory
                 return new GetTablePage(
                     new UseCases\ShowTable(
                         $tableRepo
-                    )
+                    ),
+                    new TemplateEngine
                 );
             },
             PostStartGame::class => function () use ($gameRepo, $tableRepo) {
@@ -83,7 +87,8 @@ final class ControllerFactory
                 return new GetPlayerPage(
                     new UseCases\ShowPlayer(
                         $gameRepo
-                    )
+                    ),
+                    new TemplateEngine
                 );
             },
             PostDrawCard::class => function () use ($gameRepo) {

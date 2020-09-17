@@ -6,6 +6,7 @@ namespace ConorSmith\Recollect\Infrastructure\Controllers;
 use ConorSmith\Recollect\Application\ViewModel\FaceUpCard;
 use ConorSmith\Recollect\Domain\EndOfGameStatus;
 use ConorSmith\Recollect\Domain\PlayerId;
+use ConorSmith\Recollect\Infrastructure\TemplateEngine;
 use ConorSmith\Recollect\UseCases\ShowPlayer;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,9 +17,13 @@ final class GetPlayerPage implements Controller
     /** @var ShowPlayer */
     private $useCase;
 
-    public function __construct(ShowPlayer $useCase)
+    /** @var TemplateEngine */
+    private $templateEngine;
+
+    public function __construct(ShowPlayer $useCase, TemplateEngine $templateEngine)
     {
         $this->useCase = $useCase;
+        $this->templateEngine = $templateEngine;
     }
 
     public function __invoke(Request $request, array $routeParameters): Response
@@ -29,7 +34,7 @@ final class GetPlayerPage implements Controller
 
         $player = $this->useCase->__invoke($playerId);
 
-        return new Response($this->renderTemplate(__DIR__ . "/../Templates/PlayerPage.php", [
+        return new Response($this->templateEngine->render(__DIR__ . "/../Templates/PlayerPage.php", [
             'playerId'            => $playerId->__toString(),
             'faceUpCard'          => FaceUpCard::fromPlayPile($player->getPlayPile()),
             'canDrawCard'         => $player->canDrawCard(),
@@ -59,20 +64,5 @@ final class GetPlayerPage implements Controller
         }
 
         // TODO: throw exception
-    }
-
-    private function renderTemplate(string $templateFile, array $templateVariables): string
-    {
-        extract($templateVariables);
-
-        ob_start();
-
-        include $templateFile;
-
-        $output = ob_get_contents();
-
-        ob_end_clean();
-
-        return $output;
     }
 }
