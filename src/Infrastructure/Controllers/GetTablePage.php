@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-final class GetTablePage
+final class GetTablePage implements Controller
 {
     /** @var ShowTable */
     private $useCase;

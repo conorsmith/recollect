@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-final class PostWinFaceOff
+final class PostWinFaceOff implements Controller
 {
     /** @var WinFaceOff */
     private $useCase;

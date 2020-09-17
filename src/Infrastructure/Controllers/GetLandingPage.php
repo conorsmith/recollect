@@ -6,7 +6,7 @@ namespace ConorSmith\Recollect\Infrastructure\Controllers;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-final class GetLandingPage
+final class GetLandingPage implements Controller
 {
     public function __invoke(Request $request, array $routeParameters): Response
     {

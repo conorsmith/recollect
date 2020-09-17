@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-final class PostOpenTable
+final class PostOpenTable implements Controller
 {
     /** @var OpenTable */
     private $useCase;

@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-final class PostStartGame
+final class PostStartGame implements Controller
 {
     /** @var StartGame */
     private $useCase;

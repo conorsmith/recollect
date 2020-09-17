@@ -11,7 +11,7 @@ use Ramsey\Uuid\Uuid;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-final class GetPlayerPage
+final class GetPlayerPage implements Controller
 {
     /** @var ShowPlayer */
     private $useCase;

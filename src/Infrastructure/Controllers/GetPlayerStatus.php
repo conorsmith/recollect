@@ -10,7 +10,7 @@ use Ramsey\Uuid\Uuid;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-final class GetPlayerStatus
+final class GetPlayerStatus implements Controller
 {
     /** @var ShowPlayer */
     private $useCase;
