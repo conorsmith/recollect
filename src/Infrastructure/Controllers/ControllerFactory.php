@@ -9,6 +9,7 @@ use ConorSmith\Recollect\Infrastructure\Repositories\GameRepositoryDb;
 use ConorSmith\Recollect\Infrastructure\Repositories\TableRepositoryDb;
 use ConorSmith\Recollect\UseCases;
 use Doctrine\DBAL\DriverManager;
+use InvalidArgumentException;
 use RandomLib\Factory;
 
 final class ControllerFactory
@@ -102,10 +103,10 @@ final class ControllerFactory
         ];
     }
 
-    public function create(string $controllerClassName)
+    public function create(string $controllerClassName): Controller
     {
         if (!array_key_exists($controllerClassName, $this->factories)) {
-            // TODO: throw exception
+            throw new InvalidArgumentException("'{$controllerClassName}' is not a valid Controller.");
         }
 
         return $this->factories[$controllerClassName]();
