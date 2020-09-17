@@ -25,6 +25,7 @@ switch ($routeInfo[0]) {
         $handler = $routeInfo[1];
         $routeParameters = $routeInfo[2];
         $controller = (new \ConorSmith\Recollect\Infrastructure\Controllers\ControllerFactory)->create($handler);
-        $controller($request, $routeParameters);
+        $response = $controller($request, $routeParameters);
+        $response->send();
         break;
 }

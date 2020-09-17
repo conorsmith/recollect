@@ -20,7 +20,7 @@ final class GetTablePage
         $this->useCase = $useCase;
     }
 
-    public function __invoke(Request $request, array $routeParameters)
+    public function __invoke(Request $request, array $routeParameters): Response
     {
         $routeSegments = explode("/", $request->getPathInfo());
 
@@ -29,18 +29,14 @@ final class GetTablePage
         $table = $this->useCase->__invoke($seatId);
 
         if (!$table->isOpen()) {
-            $response = new RedirectResponse("/player/{$table->getSeat($seatId)->getPlayerId()}");
-            $response->send();
-            return;
+            return new RedirectResponse("/player/{$table->getSeat($seatId)->getPlayerId()}");
         }
 
-        $response = new Response($this->renderTemplate(__DIR__ . "/../Templates/TablePage.php", [
+        return new Response($this->renderTemplate(__DIR__ . "/../Templates/TablePage.php", [
             'seatId'          => $seatId->__toString(),
             'joinCode'        => $table->getCode(),
             'numberOfPlayers' => count($table->getSeats()),
         ]));
-
-        $response->send();
     }
 
     private function renderTemplate(string $templateFile, array $templateVariables): string

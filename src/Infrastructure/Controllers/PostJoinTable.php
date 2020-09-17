@@ -6,6 +6,7 @@ namespace ConorSmith\Recollect\Infrastructure\Controllers;
 use ConorSmith\Recollect\UseCases\JoinTable;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 final class PostJoinTable
 {
@@ -17,12 +18,10 @@ final class PostJoinTable
         $this->useCase = $useCase;
     }
 
-    public function __invoke(Request $request, array $routeParameters)
+    public function __invoke(Request $request, array $routeParameters): Response
     {
         $seatId = $this->useCase->__invoke($_POST['code']);
 
-        $response = new RedirectResponse("/seat/{$seatId}");
-
-        $response->send();
+        return new RedirectResponse("/seat/{$seatId}");
     }
 }

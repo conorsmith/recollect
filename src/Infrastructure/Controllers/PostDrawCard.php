@@ -8,6 +8,7 @@ use ConorSmith\Recollect\UseCases\DrawCard;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 final class PostDrawCard
 {
@@ -19,7 +20,7 @@ final class PostDrawCard
         $this->useCase = $useCase;
     }
 
-    public function __invoke(Request $request, array $routeParameters)
+    public function __invoke(Request $request, array $routeParameters): Response
     {
         $routeSegments = explode("/", $request->getPathInfo());
 
@@ -27,8 +28,6 @@ final class PostDrawCard
 
         $this->useCase->__invoke($playerId);
 
-        $response = new RedirectResponse("/player/{$playerId}");
-
-        $response->send();
+        return new RedirectResponse("/player/{$playerId}");
     }
 }

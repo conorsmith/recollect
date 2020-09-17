@@ -21,7 +21,7 @@ final class GetPlayerPage
         $this->useCase = $useCase;
     }
 
-    public function __invoke(Request $request, array $routeParameters)
+    public function __invoke(Request $request, array $routeParameters): Response
     {
         $routeSegments = explode("/", $request->getPathInfo());
 
@@ -29,7 +29,7 @@ final class GetPlayerPage
 
         $player = $this->useCase->__invoke($playerId);
 
-        $response = new Response($this->renderTemplate(__DIR__ . "/../Templates/PlayerPage.php", [
+        return new Response($this->renderTemplate(__DIR__ . "/../Templates/PlayerPage.php", [
             'playerId'            => $playerId->__toString(),
             'faceUpCard'          => FaceUpCard::fromPlayPile($player->getPlayPile()),
             'canDrawCard'         => $player->canDrawCard(),
@@ -38,8 +38,6 @@ final class GetPlayerPage
             'endOfGameStatus'     => $this->getEndOfGameStatus($player->getEndOfGameStatus()),
             'totalCardsWon'       => $player->getWinningPile()->getTotal(),
         ]));
-
-        $response->send();
     }
 
     private function getEndOfGameStatus(?EndOfGameStatus $endOfGameStatus): string

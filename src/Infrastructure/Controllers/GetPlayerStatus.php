@@ -20,7 +20,7 @@ final class GetPlayerStatus
         $this->useCase = $useCase;
     }
 
-    public function __invoke(Request $request, array $routeParameters)
+    public function __invoke(Request $request, array $routeParameters): Response
     {
         $routeSegments = explode("/", $request->getPathInfo());
 
@@ -28,13 +28,11 @@ final class GetPlayerStatus
 
         $player = $this->useCase->__invoke($playerId);
 
-        $response = new Response(json_encode([
+        return new Response(json_encode([
             'faceUpCard'          => FaceUpCard::fromPlayPile($player->getPlayPile()),
             'canDrawCard'         => $player->canDrawCard(),
             'canCompeteInFaceOff' => $player->canCompeteInFaceOff(),
             'isGameOver'          => $player->isGameOver(),
         ]));
-
-        $response->send();
     }
 }

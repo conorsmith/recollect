@@ -8,11 +8,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 final class GetLandingPage
 {
-    public function __invoke(Request $request, array $routeParameters)
+    public function __invoke(Request $request, array $routeParameters): Response
     {
-        $response = new Response($this->renderTemplate());
-
-        $response->send();
+        return new Response($this->renderTemplate());
     }
 
     private function renderTemplate(): string
