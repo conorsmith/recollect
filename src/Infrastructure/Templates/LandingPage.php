@@ -12,24 +12,24 @@
     }
 </style>
 
-<div class="container" style="font-family: 'Hind', sans-serif;">
+<div class="container" style="font-family: 'Alegreya Sans', sans-serif;">
 
     <div style="max-width: 20rem; margin: 0 auto;">
 
-        <h1 style="text-align: center; margin: 1rem auto; font-weight: 100; text-transform: uppercase; letter-spacing: 0.1rem;"><span style="color: #666;">Re</span>collect</h1>
+        <h1 class="logo"><span>Re</span>collect</h1>
 
         <div class="card" style="text-align: center;">
             <div class="card-body">
                 <form method="POST" action="/join-table" autocomplete="off">
                     <div class="form-group">
-                        <input type="text" class="form-control" name="code" maxlength="4" required placeholder="Join Code">
+                        <input type="text" class="form-control" name="code" maxlength="4" required placeholder="Join Code" style="font-size: 1.4rem; text-transform: uppercase;">
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">Play</button>
                 </form>
             </div>
         </div>
 
-        <div style="text-align: center; font-weight: 100; margin: 1rem auto;">OR</div>
+        <div style="text-align: center; font-weight: 500; margin: 1rem auto;">OR</div>
 
         <div class="card">
             <div class="card-body">

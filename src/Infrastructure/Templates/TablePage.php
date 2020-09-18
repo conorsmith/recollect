@@ -12,11 +12,11 @@
     }
 </style>
 
-<div class="container" style="font-family: 'Hind', sans-serif;">
+<div class="container" style="font-family: 'Alegreya Sans', sans-serif;">
 
     <div style="max-width: 20rem; margin: 0 auto;">
 
-        <h1 style="text-align: center; margin: 1rem auto; font-weight: 100; text-transform: uppercase; letter-spacing: 0.1rem;"><span style="color: #666;">Re</span>collect</h1>
+        <h1 class="logo"><span>Re</span>collect</h1>
 
         <hr>
 
