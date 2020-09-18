@@ -31,6 +31,11 @@
             font-size: 1.2rem;
         }
 
+        .btn-game {
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
         .code-letter {
             background-color: #fff;
             margin: 0 0.4rem;
@@ -58,9 +63,9 @@
         }
 
         .no-cards {
-            font-family: 'Hind', sans-serif;
+            font-family: 'Alegreya Sans', sans-serif;
             font-size: 2rem;
-            font-weight: 100;
+            font-weight: 300;
         }
 
         .face-up-card {
