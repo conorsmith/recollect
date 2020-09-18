@@ -7,6 +7,16 @@ final class TemplateEngine
 {
     public function render(string $templateFile, array $templateVariables = []): string
     {
+        return $this->renderTemplate(
+            __DIR__ . "/Templates/Layout.php",
+            [
+                'content' => $this->renderTemplate($templateFile, $templateVariables),
+            ]
+        );
+    }
+
+    private function renderTemplate(string $templateFile, array $templateVariables): string
+    {
         extract($templateVariables);
 
         ob_start();
