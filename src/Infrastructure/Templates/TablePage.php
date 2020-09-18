@@ -29,7 +29,9 @@
 
         <div class="card" style="margin-bottom: 1rem; text-align: center;">
             <div class="card-body">
-                <p><?=$numberOfPlayers?> player<?=$numberOfPlayers === 1 ? " has" : "s have"?> joined</p>
+                <p style="font-size: 1.2rem;">
+                    <?=$numberOfPlayers?> player<?=$numberOfPlayers === 1 ? " has" : "s have"?> joined
+                </p>
 
                 <form method="POST" action="/seat/<?=$seatId?>/start-game">
                     <button type="submit" class="btn btn-primary btn-block" <?=$numberOfPlayers === 1 ? "disabled" : ""?>>Start Game</button>

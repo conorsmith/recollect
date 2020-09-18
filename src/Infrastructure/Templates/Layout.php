@@ -39,6 +39,7 @@
             text-align: center;
             border: 1px solid rgba(0,0,0,.125);
             border-radius: .25rem;
+            font-weight: 800;
         }
 
         .surface {
