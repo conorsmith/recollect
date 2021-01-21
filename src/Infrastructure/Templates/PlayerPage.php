@@ -56,9 +56,14 @@
     </div>
 </div>
 
+<template id="symbol-f7803b09-8170-4bbd-a6e3-c946ab0da1d8"><?php require __DIR__ . "/Symbols/Asterisk.php"; ?></template>
 <template id="symbol-b379317c-d4df-4392-ae87-7eb54568387b"><?php require __DIR__ . "/Symbols/Circle.php"; ?></template>
 <template id="symbol-2ad73bfd-9cf5-45c7-89dc-862f3e6fc4af"><?php require __DIR__ . "/Symbols/Diamond.php"; ?></template>
-<template id="symbol-1b96336d-59fa-414d-b29b-b49823b90e14"><?php require __DIR__ . "/Symbols/Cross.php"; ?></template>
+<template id="symbol-42cc6267-6435-4ac9-a93e-c09fd2e84bdb"><?php require __DIR__ . "/Symbols/Dots.php"; ?></template>
+<template id="symbol-6df3a20a-7e07-4242-82b2-eb8075217e5a"><?php require __DIR__ . "/Symbols/Grate.php"; ?></template>
+<template id="symbol-abfcf027-921c-46f5-be0c-88b56a6c4500"><?php require __DIR__ . "/Symbols/Lines.php"; ?></template>
+<template id="symbol-1b96336d-59fa-414d-b29b-b49823b90e14"><?php require __DIR__ . "/Symbols/Plus.php"; ?></template>
+<template id="symbol-06382e60-0878-4150-8be9-ec172207b0e7"><?php require __DIR__ . "/Symbols/Waves.php"; ?></template>
 
 </body>
 </html>

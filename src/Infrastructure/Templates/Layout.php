@@ -82,29 +82,52 @@
             text-align: center;
         }
 
+        .symbol-asterisk {
+            margin: 2.5rem auto;
+            width: 6rem;
+            height: 6rem;
+        }
+        .symbol-asterisk .cross {
+            background: #ab550f;
+            height: 6rem;
+            margin-left: 2.5rem;
+            position: relative;
+            width: 1rem;
+        }
+        .symbol-asterisk .cross:after {
+            background: #ab550f;
+            content: "";
+            height: 1rem;
+            margin-left: -2.5rem;
+            position: absolute;
+            top: 2.5rem;
+            width: 6rem;
+        }
+        .symbol-asterisk .rotated-cross {
+            background: #ab550f;
+            height: 6rem;
+            margin-left: 2.5rem;
+            margin-top: -6rem;
+            position: relative;
+            width: 1rem;
+            transform: rotateY(0deg) rotate(45deg);
+        }
+        .symbol-asterisk .rotated-cross:after {
+            background: #ab550f;
+            content: "";
+            height: 1rem;
+            margin-left: -2.5rem;
+            position: absolute;
+            top: 2.5rem;
+            width: 6rem;
+        }
+
         .symbol-circle {
             margin: 2.5rem auto;
             width: 6rem;
             height: 6rem;
             border-radius: 50%;
             border: 1rem solid #dd6c09;
-        }
-
-        .symbol-cross {
-            margin: 2.5rem auto;
-            background: #2cdd04;
-            height: 6rem;
-            position: relative;
-            width: 2rem;
-        }
-        .symbol-cross:after {
-            background: #2cdd04;
-            content: "";
-            height: 2rem;
-            left: -2rem;
-            position: absolute;
-            top: 2rem;
-            width: 6rem;
         }
 
         .symbol-diamond {
@@ -125,6 +148,101 @@
             height: 0;
             border: 3rem solid transparent;
             border-top-color: #ffe600;
+        }
+
+        .symbol-dots {
+            margin: 2.5rem auto;
+            width: 6rem;
+            height: 6rem;
+        }
+        .symbol-dots .dot {
+            float: left;
+            margin: 0.2rem;
+            width: 2.6rem;
+            height: 2.6rem;
+            border-radius: 50%;
+            background-color: #dd093a;
+        }
+
+        .symbol-grate {
+            margin: 2.5rem auto;
+            width: 6rem;
+            height: 6rem;
+        }
+        .symbol-grate .horizontal-lines {
+            padding-top: 0.5rem;
+        }
+        .symbol-grate .horizontal-line {
+            background-color: #0a72f3;
+            height: 1rem;
+            width: 6rem;
+            margin-bottom: 1rem;
+        }
+        .symbol-grate .vertical-lines {
+            margin-top: -6.5rem;
+            padding-left: 0.5rem;
+        }
+        .symbol-grate .vertical-line {
+            float: left;
+            background-color: #0a72f3;
+            height: 6rem;
+            width: 1rem;
+            margin-right: 1rem;
+        }
+        .symbol-grate .vertical-line:last-child {
+            margin-right: 0;
+        }
+
+        .symbol-lines {
+            margin: 2.5rem auto;
+            width: 5rem;
+            height: 6rem;
+        }
+        .symbol-lines .line {
+            float: left;
+            width: 1.5rem;
+            height: 6rem;
+            background-color: #d03dce;
+        }
+        .symbol-lines .line:first-child {
+            margin-right: 2rem;
+        }
+
+        .symbol-plus {
+            margin: 2.5rem auto;
+            background: #2cdd04;
+            height: 6rem;
+            position: relative;
+            width: 2rem;
+        }
+        .symbol-plus:after {
+            background: #2cdd04;
+            content: "";
+            height: 2rem;
+            left: -2rem;
+            position: absolute;
+            top: 2rem;
+            width: 6rem;
+        }
+
+        .symbol-waves {
+            margin: 2.3rem auto 2.5rem;
+            width: 6rem;
+            height: 6rem;
+        }
+
+        .symbol-waves .wave {
+            height: 4rem;
+            background: linear-gradient(135deg, #c64ac4 25%, transparent 25%) -4rem -2rem,
+            linear-gradient(-135deg, #c64ac4 25%, transparent 25%) -4rem -2rem,
+            linear-gradient(45deg, #c64ac4 25%, transparent 25%) -2rem -2rem,
+            linear-gradient(-45deg, #c64ac4 25%, transparent 25%) -2rem -2rem;
+            background-size: 4rem 4rem;
+            transform: scaleY(0.8);
+        }
+
+        .symbol-waves .wave:last-child {
+            margin-top: -1rem;
         }
     </style>
 </head>
