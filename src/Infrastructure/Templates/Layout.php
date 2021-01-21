@@ -262,7 +262,11 @@
             $('#gameOverMessage').modal();
         }
 
-        if ($("#pageData").data("isGameOver") !== 1) {
+        let debuggingInactivePage = (new URLSearchParams(window.location.search)).get('inactive') !== null;
+
+        if ($("#pageData").data("isGameOver") !== 1
+            && !debuggingInactivePage
+        ) {
             (function pollPlayerStatus() {
                 $.ajax({
                     method: "GET",
