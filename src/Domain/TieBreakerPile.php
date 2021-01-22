@@ -27,4 +27,9 @@ final class TieBreakerPile
     {
         return $this->cards;
     }
+
+    public function placeAtop(Card $card): void
+    {
+        array_unshift($this->cards, $card);
+    }
 }

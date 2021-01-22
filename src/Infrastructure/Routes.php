@@ -16,4 +16,5 @@ return function (RouteCollector $r) {
     $r->get("/player/{playerId}/status", Controllers\GetPlayerStatus::class);
     $r->post("/player/{playerId}/draw-card", Controllers\PostDrawCard::class);
     $r->post("/player/{playerId}/win-face-off", Controllers\PostWinFaceOff::class);
+    $r->post("/player/{playerId}/draw-tie-breaker", Controllers\PostDrawTieBreaker::class);
 };

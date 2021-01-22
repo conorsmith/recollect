@@ -106,6 +106,13 @@ final class ControllerFactory
                         $gameRepo
                     )
                 );
+            },
+            PostDrawTieBreaker::class => function () use ($gameRepo) {
+                return new PostDrawTieBreaker(
+                    new UseCases\DrawTieBreaker(
+                        $gameRepo
+                    )
+                );
             }
         ];
     }
