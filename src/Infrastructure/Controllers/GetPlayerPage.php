@@ -35,14 +35,15 @@ final class GetPlayerPage implements Controller
         $player = $this->useCase->__invoke($playerId);
 
         return new Response($this->templateEngine->render(__DIR__ . "/../Templates/PlayerPage.php", [
-            'playerId'            => $playerId->__toString(),
-            'faceUpCard'          => FaceUpCard::fromPlayPile($player->getPlayPile()),
-            'canDrawCard'         => $player->canDrawCard(),
-            'canCompeteInFaceOff' => $player->canCompeteInFaceOff(),
-            'canDrawTieBreaker'   => $player->canDrawTieBreaker(),
-            'isGameOver'          => $player->isGameOver(),
-            'endOfGameStatus'     => $this->getEndOfGameStatus($player->getEndOfGameStatus()),
-            'totalCardsWon'       => $player->getWinningPile()->getTotal(),
+            'playerId'               => $playerId->__toString(),
+            'faceUpCard'             => FaceUpCard::fromPiles($player->getPlayPile(), $player->getTieBreakerPile()),
+            'isTieBreakerPileActive' => !$player->getTieBreakerPile()->isEmpty(),
+            'canDrawCard'            => $player->canDrawCard(),
+            'canCompeteInFaceOff'    => $player->canCompeteInFaceOff(),
+            'canDrawTieBreaker'      => $player->canDrawTieBreaker(),
+            'isGameOver'             => $player->isGameOver(),
+            'endOfGameStatus'        => $this->getEndOfGameStatus($player->getEndOfGameStatus()),
+            'totalCardsWon'          => $player->getWinningPile()->getTotal(),
         ]));
     }
 

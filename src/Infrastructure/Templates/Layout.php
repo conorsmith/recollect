@@ -53,12 +53,25 @@
             left: 0;
             right: 0;
             bottom: 0;
+        }
+
+        .surface.play-pile {
             background: repeating-radial-gradient(
                     circle at center,
                     #fcfcfc,
                     #fcfcfc 20px,
                     #f8f8f8 20px,
                     #f8f8f8 40px
+            );
+        }
+
+        .surface.tie-breaker-pile {
+            background: repeating-radial-gradient(
+                    circle at center,
+                    #040404,
+                    #040404 20px,
+                    #202020 20px,
+                    #202020 40px
             );
         }
 

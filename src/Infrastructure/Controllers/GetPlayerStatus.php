@@ -29,11 +29,12 @@ final class GetPlayerStatus implements Controller
         $player = $this->useCase->__invoke($playerId);
 
         return new Response(json_encode([
-            'faceUpCard'          => FaceUpCard::fromPlayPile($player->getPlayPile()),
-            'canDrawCard'         => $player->canDrawCard(),
-            'canCompeteInFaceOff' => $player->canCompeteInFaceOff(),
-            'canDrawTieBreaker'   => $player->canDrawTieBreaker(),
-            'isGameOver'          => $player->isGameOver(),
+            'faceUpCard'             => FaceUpCard::fromPiles($player->getPlayPile(), $player->getTieBreakerPile()),
+            'isTieBreakerPileActive' => !$player->getTieBreakerPile()->isEmpty(),
+            'canDrawCard'            => $player->canDrawCard(),
+            'canCompeteInFaceOff'    => $player->canCompeteInFaceOff(),
+            'canDrawTieBreaker'      => $player->canDrawTieBreaker(),
+            'isGameOver'             => $player->isGameOver(),
         ]));
     }
 }

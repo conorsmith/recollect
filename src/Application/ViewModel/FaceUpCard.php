@@ -5,6 +5,7 @@ namespace ConorSmith\Recollect\Application\ViewModel;
 
 use ConorSmith\Recollect\Domain\Card;
 use ConorSmith\Recollect\Domain\PlayPile;
+use ConorSmith\Recollect\Domain\TieBreakerPile;
 
 final class FaceUpCard
 {
@@ -19,15 +20,21 @@ final class FaceUpCard
         "06382e60-0878-4150-8be9-ec172207b0e7" => "Waves",
     ];
 
-    public static function fromPlayPile(PlayPile $playPile): ?self
+    public static function fromPiles(PlayPile $playPile, TieBreakerPile $tieBreakerPile): ?self
     {
-        $card = $playPile->getFaceUpCard();
+        $card = $tieBreakerPile->getFaceUpCard();
 
-        if (is_null($card)) {
-            return null;
+        if (!is_null($card)) {
+            return new self($card);
         }
 
-        return new self($card);
+        $card = $playPile->getFaceUpCard();
+
+        if (!is_null($card)) {
+            return new self($card);
+        }
+
+        return null;
     }
 
     /** @var string */

@@ -30,6 +30,7 @@ class ShowPlayer
         return new Player(
             $player->getPlayPile(),
             $player->getWinningPile(),
+            $player->getTieBreakerPile(),
             $game->canPlayerDrawCard($player->getId()),
             $game->canPlayerCompeteInFaceOff($player->getId()),
             $game->canPlayerDrawTieBreaker($player->getId()),

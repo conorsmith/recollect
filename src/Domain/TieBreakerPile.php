@@ -32,4 +32,13 @@ final class TieBreakerPile
     {
         array_unshift($this->cards, $card);
     }
+
+    public function getFaceUpCard(): ?Card
+    {
+        if (count($this->cards) === 0) {
+            return null;
+        }
+
+        return $this->cards[0];
+    }
 }

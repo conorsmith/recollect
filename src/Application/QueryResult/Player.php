@@ -5,6 +5,7 @@ namespace ConorSmith\Recollect\Application\QueryResult;
 
 use ConorSmith\Recollect\Domain\EndOfGameStatus;
 use ConorSmith\Recollect\Domain\PlayPile;
+use ConorSmith\Recollect\Domain\TieBreakerPile;
 use ConorSmith\Recollect\Domain\WinningPile;
 
 final class Player
@@ -14,6 +15,9 @@ final class Player
 
     /** @var WinningPile */
     private $winningPile;
+
+    /** @var TieBreakerPile */
+    private $tieBreakerPile;
 
     /** @var bool */
     private $canDrawCard;
@@ -33,6 +37,7 @@ final class Player
     public function __construct(
         PlayPile $playPile,
         WinningPile $winningPile,
+        TieBreakerPile $tieBreakerPile,
         bool $canDrawCard,
         bool $canCompeteInFaceOff,
         bool $canDrawTieBreaker,
@@ -41,6 +46,7 @@ final class Player
     ) {
         $this->playPile = $playPile;
         $this->winningPile = $winningPile;
+        $this->tieBreakerPile = $tieBreakerPile;
         $this->canDrawCard = $canDrawCard;
         $this->canCompeteInFaceOff = $canCompeteInFaceOff;
         $this->canDrawTieBreaker = $canDrawTieBreaker;
@@ -56,6 +62,11 @@ final class Player
     public function getWinningPile(): WinningPile
     {
         return $this->winningPile;
+    }
+
+    public function getTieBreakerPile(): TieBreakerPile
+    {
+        return $this->tieBreakerPile;
     }
 
     public function canDrawCard(): bool
