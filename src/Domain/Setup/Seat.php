@@ -6,6 +6,7 @@ namespace ConorSmith\Recollect\Domain\Setup;
 use ConorSmith\Recollect\Domain\Player;
 use ConorSmith\Recollect\Domain\PlayerId;
 use ConorSmith\Recollect\Domain\PlayPile;
+use ConorSmith\Recollect\Domain\TieBreakerPile;
 use ConorSmith\Recollect\Domain\WinningPile;
 
 final class Seat
@@ -42,7 +43,8 @@ final class Seat
         $player = new Player(
             PlayerId::generate(),
             PlayPile::createEmpty(),
-            WinningPile::createEmpty()
+            WinningPile::createEmpty(),
+            TieBreakerPile::createEmpty()
         );
 
         $this->playerId = $player->getId();

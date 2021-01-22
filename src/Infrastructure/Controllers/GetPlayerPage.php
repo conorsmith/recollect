@@ -39,6 +39,7 @@ final class GetPlayerPage implements Controller
             'faceUpCard'          => FaceUpCard::fromPlayPile($player->getPlayPile()),
             'canDrawCard'         => $player->canDrawCard(),
             'canCompeteInFaceOff' => $player->canCompeteInFaceOff(),
+            'canDrawTieBreaker'   => $player->canDrawTieBreaker(),
             'isGameOver'          => $player->isGameOver(),
             'endOfGameStatus'     => $this->getEndOfGameStatus($player->getEndOfGameStatus()),
             'totalCardsWon'       => $player->getWinningPile()->getTotal(),

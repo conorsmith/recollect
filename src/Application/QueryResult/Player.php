@@ -22,6 +22,9 @@ final class Player
     private $canCompeteInFaceOff;
 
     /** @var bool */
+    private $canDrawTieBreaker;
+
+    /** @var bool */
     private $isGameOver;
 
     /** @var ?EndOfGameStatus */
@@ -32,6 +35,7 @@ final class Player
         WinningPile $winningPile,
         bool $canDrawCard,
         bool $canCompeteInFaceOff,
+        bool $canDrawTieBreaker,
         bool $isGameOver,
         ?EndOfGameStatus $endOfGameStatus
     ) {
@@ -39,6 +43,7 @@ final class Player
         $this->winningPile = $winningPile;
         $this->canDrawCard = $canDrawCard;
         $this->canCompeteInFaceOff = $canCompeteInFaceOff;
+        $this->canDrawTieBreaker = $canDrawTieBreaker;
         $this->isGameOver = $isGameOver;
         $this->endOfGameStatus = $endOfGameStatus;
     }
@@ -61,6 +66,11 @@ final class Player
     public function canCompeteInFaceOff(): bool
     {
         return $this->canCompeteInFaceOff;
+    }
+
+    public function canDrawTieBreaker(): bool
+    {
+        return $this->canDrawTieBreaker;
     }
 
     public function isGameOver(): bool

@@ -145,6 +145,33 @@ final class Game
         return $faceOff->includesPlayer($playerId);
     }
 
+    public function canPlayerDrawTieBreaker(PlayerId $playerId): bool
+    {
+        if (!$this->hasActiveFaceOff()) {
+            return false;
+        }
+
+        $faceOff = $this->getActiveFaceOff();
+
+        if ($faceOff->includesPlayer($playerId)) {
+            return false;
+        }
+
+        return !$this->hasActiveTieBreaker();
+    }
+
+    private function hasActiveTieBreaker(): bool
+    {
+        /** @var Player $player */
+        foreach ($this->players as $player) {
+            if (!$player->getTieBreakerPile()->isEmpty()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public function getEndOfGameStatusForPlayer(PlayerId $playerId): EndOfGameStatus
     {
         if (!$this->isGameOver()) {

@@ -297,6 +297,12 @@
                             $("#faceOffButton").hide();
                         }
 
+                        if (response.canDrawTieBreaker) {
+                            $("#drawTieBreakerButton").show();
+                        } else {
+                            $("#drawTieBreakerButton").hide();
+                        }
+
                         if (response.isGameOver) {
                             location.reload();
                         }

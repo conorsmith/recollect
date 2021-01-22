@@ -36,6 +36,9 @@
         <form id="faceOffButton" method="POST" action="/player/<?=$playerId?>/win-face-off" style="margin: 0 0.2rem; <?=$canCompeteInFaceOff ? "" : "display: none;"?>">
             <button type="submit" class="btn btn-primary btn-game">Win Face Off</button>
         </form>
+        <form id="drawTieBreakerButton" method="POST" action="/player/<?=$playerId?>/draw-tie-breaker" style="margin: 0 0.2rem; <?=$canDrawTieBreaker ? "" : "display: none;"?>">
+            <button type="submit" class="btn btn-primary btn-game">Draw Tie Breaker</button>
+        </form>
     </div>
 </div>
 

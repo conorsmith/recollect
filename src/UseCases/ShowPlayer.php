@@ -32,6 +32,7 @@ class ShowPlayer
             $player->getWinningPile(),
             $game->canPlayerDrawCard($player->getId()),
             $game->canPlayerCompeteInFaceOff($player->getId()),
+            $game->canPlayerDrawTieBreaker($player->getId()),
             $game->isGameOver(),
             $game->isGameOver() ? $game->getEndOfGameStatusForPlayer($player->getId()) : null
         );

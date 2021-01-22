@@ -14,11 +14,19 @@ final class Player
     /** @var WinningPile */
     private $winningPile;
 
-    public function __construct(PlayerId $id, PlayPile $playPile, WinningPile $winningPile)
-    {
+    /** @var TieBreakerPile */
+    private $tieBreakerPile;
+
+    public function __construct(
+        PlayerId $id,
+        PlayPile $playPile,
+        WinningPile $winningPile,
+        TieBreakerPile $tieBreakerPile
+    ) {
         $this->id = $id;
         $this->playPile = $playPile;
         $this->winningPile = $winningPile;
+        $this->tieBreakerPile = $tieBreakerPile;
     }
 
     public function getId(): PlayerId
@@ -34,5 +42,10 @@ final class Player
     public function getWinningPile(): WinningPile
     {
         return $this->winningPile;
+    }
+
+    public function getTieBreakerPile()
+    {
+        return $this->tieBreakerPile;
     }
 }

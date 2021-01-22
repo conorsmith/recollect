@@ -13,6 +13,7 @@ use ConorSmith\Recollect\Domain\GameRepository;
 use ConorSmith\Recollect\Domain\Player;
 use ConorSmith\Recollect\Domain\PlayerId;
 use ConorSmith\Recollect\Domain\PlayPile;
+use ConorSmith\Recollect\Domain\TieBreakerPile;
 use ConorSmith\Recollect\Domain\WinningPile;
 use ConorSmith\Recollect\Infrastructure\Clock;
 use Doctrine\DBAL\Connection;
@@ -72,10 +73,19 @@ final class GameRepositoryDb implements GameRepository
                 $playPileCards[] = $this->deck->findCard(new CardId(Uuid::fromString($cardId)));
             }
 
+            $decodedTieBreakerPile = json_decode($playerRow['tie_breaker_pile']);
+            $tieBreakerPileCards = [];
+
+            /** @var string $cardId */
+            foreach ($decodedTieBreakerPile as $cardId) {
+                $tieBreakerPileCards[] = $this->deck->findCard(new CardId(Uuid::fromString($cardId)));
+            }
+
             $players[] = new Player(
                 new PlayerId(Uuid::fromString($playerRow['id'])),
                 new PlayPile($playPileCards),
-                new WinningPile(intval($playerRow['winning_pile_count']))
+                new WinningPile(intval($playerRow['winning_pile_count'])),
+                new TieBreakerPile($tieBreakerPileCards)
             );
         }
 
@@ -127,6 +137,7 @@ final class GameRepositoryDb implements GameRepository
                     'game_id'            => $game->getId(),
                     'play_pile'          => json_encode([]),
                     'winning_pile_count' => $player->getWinningPile()->getTotal(),
+                    'tie_breaker_pile'   => json_encode([]),
                     'created_at'         => $nowAsString,
                 ]);
             }
@@ -153,6 +164,7 @@ final class GameRepositoryDb implements GameRepository
                         'game_id'            => $game->getId(),
                         'play_pile'          => json_encode([]),
                         'winning_pile_count' => $player->getWinningPile()->getTotal(),
+                        'tie_breaker_pile'   => json_encode([]),
                         'created_at'         => $nowAsString,
                     ]);
                 } else {
@@ -166,9 +178,19 @@ final class GameRepositoryDb implements GameRepository
 
                     $encodedPlayPile = json_encode($playPileCardIds);
 
+                    $tieBreakerPileCardIds = [];
+
+                    /** @var Card $card */
+                    foreach ($player->getTieBreakerPile()->getCards() as $card) {
+                        $tieBreakerPileCardIds[] = $card->getId()->__toString();
+                    }
+
+                    $encodedTieBreakerPile = json_encode($tieBreakerPileCardIds);
+
                     $this->db->update("players", [
                         'play_pile'          => $encodedPlayPile,
                         'winning_pile_count' => $player->getWinningPile()->getTotal(),
+                        'tie_breaker_pile'   => $encodedTieBreakerPile,
                         'updated_at'         => $nowAsString,
                     ], [
                         'id' => $player->getId(),
