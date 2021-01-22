@@ -286,15 +286,15 @@
                         }
 
                         if (response.canDrawCard) {
-                            $("#drawButton").removeAttr("disabled");
+                            $("#drawButton").show();
                         } else {
-                            $("#drawButton").attr("disabled", "disabled");
+                            $("#drawButton").hide();
                         }
 
                         if (response.canCompeteInFaceOff) {
-                            $("#faceOffButton").removeAttr("disabled");
+                            $("#faceOffButton").show();
                         } else {
-                            $("#faceOffButton").attr("disabled", "disabled");
+                            $("#faceOffButton").hide();
                         }
 
                         if (response.isGameOver) {

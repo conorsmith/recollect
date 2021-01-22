@@ -29,12 +29,12 @@
 </div>
 
 <div class="fixed-bottom" style="padding: 0.5rem; border-top: 1px solid #ddd; background-color: #fff;">
-    <div class="d-flex justify-content-center">
-        <form method="POST" action="/player/<?=$playerId?>/draw-card" style="margin: 0 0.2rem;">
-            <button type="submit" id="drawButton" class="btn btn-primary btn-game" <?=$canDrawCard ? "" : "disabled"?>>Draw Card</button>
+    <div class="d-flex justify-content-center" style="min-height: 2.375rem;">
+        <form id="drawButton" method="POST" action="/player/<?=$playerId?>/draw-card" style="margin: 0 0.2rem; <?=$canDrawCard ? "" : "display: none;"?>">
+            <button type="submit" class="btn btn-primary btn-game">Draw Card</button>
         </form>
-        <form method="POST" action="/player/<?=$playerId?>/win-face-off" style="margin: 0 0.2rem;">
-            <button type="submit" id="faceOffButton" class="btn btn-primary btn-game" <?=$canCompeteInFaceOff ? "" : "disabled"?>>Win Face Off</button>
+        <form id="faceOffButton" method="POST" action="/player/<?=$playerId?>/win-face-off" style="margin: 0 0.2rem; <?=$canCompeteInFaceOff ? "" : "display: none;"?>">
+            <button type="submit" class="btn btn-primary btn-game">Win Face Off</button>
         </form>
     </div>
 </div>
