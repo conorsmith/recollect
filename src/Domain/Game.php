@@ -157,7 +157,13 @@ final class Game
             return false;
         }
 
-        return !$this->hasActiveTieBreaker();
+        if (!$this->hasActiveTieBreaker()) {
+            return true;
+        }
+
+        $player = $this->getPlayer($playerId);
+
+        return !$player->getTieBreakerPile()->isEmpty();
     }
 
     private function hasActiveTieBreaker(): bool
