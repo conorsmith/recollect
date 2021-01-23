@@ -151,6 +151,10 @@ final class Game
             return false;
         }
 
+        if ($this->drawPile->isEmpty()) {
+            return false;
+        }
+
         $faceOff = $this->getActiveFaceOff();
 
         if ($faceOff->includesPlayer($playerId)) {
