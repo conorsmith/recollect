@@ -1,6 +1,6 @@
 <div id="pageData" data-player-id="<?=$playerId?>" data-is-game-over="<?=$isGameOver?>"></div>
 
-<div class="surface d-flex justify-content-center align-items-center <?=$isTieBreakerPileActive ? "tie-breaker-pile" : "play-pile"?>">
+<div id="activePile" class="surface d-flex justify-content-center align-items-center <?=$isTieBreakerPileActive ? "tie-breaker-pile" : "play-pile"?>">
 
     <div class="card face-up-card"
          id="faceUpCard"

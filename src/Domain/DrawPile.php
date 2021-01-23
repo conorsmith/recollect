@@ -40,4 +40,11 @@ final class DrawPile
     {
         return count($this->cards) === 0;
     }
+
+    public function addCardsAndShuffle(array $cards): void
+    {
+        $this->cards = array_merge($cards, $this->cards);
+
+        shuffle($this->cards);
+    }
 }

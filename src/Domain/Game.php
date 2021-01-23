@@ -166,6 +166,17 @@ final class Game
         return !$player->getTieBreakerPile()->isEmpty();
     }
 
+    public function shuffleTieBreakersBackIntoDrawPile(): void
+    {
+        if (!$this->hasActiveTieBreaker()) {
+            return;
+        }
+
+        $tieBreakerPile = $this->getActiveTieBreakerPile();
+
+        $this->drawPile->addCardsAndShuffle($tieBreakerPile->removeCards());
+    }
+
     private function hasActiveTieBreaker(): bool
     {
         /** @var Player $player */
@@ -176,6 +187,18 @@ final class Game
         }
 
         return false;
+    }
+
+    private function getActiveTieBreakerPile(): TieBreakerPile
+    {
+        /** @var Player $player */
+        foreach ($this->players as $player) {
+            if (!$player->getTieBreakerPile()->isEmpty()) {
+                return $player->getTieBreakerPile();
+            }
+        }
+
+        // Throw exception
     }
 
     public function getEndOfGameStatusForPlayer(PlayerId $playerId): EndOfGameStatus

@@ -33,6 +33,15 @@ final class TieBreakerPile
         array_unshift($this->cards, $card);
     }
 
+    public function removeCards(): array
+    {
+        $cards = $this->cards;
+
+        $this->cards = [];
+
+        return $cards;
+    }
+
     public function getFaceUpCard(): ?Card
     {
         if (count($this->cards) === 0) {

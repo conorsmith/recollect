@@ -44,6 +44,8 @@ class WinFaceOff
 
         $winningPile->add($card);
 
+        $game->shuffleTieBreakersBackIntoDrawPile();
+
         $this->gameRepo->save($game);
     }
 }

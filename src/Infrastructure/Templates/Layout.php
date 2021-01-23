@@ -316,6 +316,16 @@
                             $("#drawTieBreakerButton").hide();
                         }
 
+                        if (response.isTieBreakerPileActive) {
+                            $("#activePile")
+                                .removeClass("play-pile")
+                                .addClass("tie-breaker-pile");
+                        } else {
+                            $("#activePile")
+                                .removeClass("tie-breaker-pile")
+                                .addClass("play-pile");
+                        }
+
                         if (response.isGameOver) {
                             location.reload();
                         }
